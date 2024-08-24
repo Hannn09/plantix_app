@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="155dp"
+    android:layout_height="200dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/background_history_card">
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/medicine_img"
+        android:layout_width="135dp"
+        android:layout_height="95dp"
+        android:src="@drawable/medicine_dummy"
+        android:layout_marginTop="10dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <TextView
+        android:id="@+id/medicine"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:fontFamily="@font/plus_jakarta_sans_bold"
+        android:textSize="12sp"
+        android:textColor="@color/blackText"
+        android:text="Obat Penumbuh"
+        app:layout_constraintStart_toStartOf="@id/medicine_img"
+        app:layout_constraintTop_toBottomOf="@id/medicine_img"/>
+
+    <TextView
+        android:id="@+id/medicine_desc"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:fontFamily="@font/plus_jakarta_sans_medium"
+        android:textSize="10sp"
+        android:textColor="@color/textColorHint"
+        android:text="Obat yang ampuh menumbuhkan tanaman"
+        app:layout_constraintStart_toStartOf="@id/medicine"
+        app:layout_constraintTop_toBottomOf="@id/medicine"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

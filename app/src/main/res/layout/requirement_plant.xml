@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="70dp"
+    app:cardBackgroundColor="@color/white"
+    app:cardCornerRadius="8dp"
+    app:cardElevation="0dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingHorizontal="10dp">
+
+        <ImageView
+            android:id="@+id/ic_requirement"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:src="@drawable/ic_sun"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/title_requirement"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:fontFamily="@font/plus_jakarta_sans_bold"
+            android:text="@string/dummy_title_requirement"
+            android:textColor="@color/blackText"
+            app:layout_constraintStart_toEndOf="@id/ic_requirement"
+            app:layout_constraintTop_toTopOf="@id/ic_requirement" />
+
+        <TextView
+            android:id="@+id/desc_requirement"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/plus_jakarta_sans_medium"
+            android:text="@string/dummy_desc_requirement"
+            android:textColor="#4D303030"
+            android:textSize="10sp"
+            app:layout_constraintStart_toStartOf="@id/title_requirement"
+            app:layout_constraintTop_toBottomOf="@id/title_requirement" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>

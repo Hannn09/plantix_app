@@ -1,0 +1,346 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.scan.detection.ScanActivity">
+
+    <androidx.camera.view.PreviewView
+        android:id="@+id/previewView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <ImageButton
+        android:id="@+id/btnBack"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/background_back_button_register"
+        android:src="@drawable/ic_back_grey" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="450dp"
+        android:layout_gravity="bottom"
+        android:background="@drawable/frame_auth"
+        android:paddingHorizontal="32dp"
+        android:paddingVertical="45dp"
+        android:scrollbars="none">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/txtRecorded"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/plus_jakarta_sans_extra"
+                android:letterSpacing="-0.03"
+                android:text="Recorded"
+                android:textColor="@color/blackText"
+                android:textSize="22sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/txtNamePlant"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="35dp"
+                android:fontFamily="@font/plus_jakarta_sans_medium"
+                android:letterSpacing="-0.03"
+                android:text="Nama Tanaman"
+                android:textColor="@color/blackText"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/txtRecorded" />
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/plantNameEditTextLayout"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/bg_text_field"
+                app:boxStrokeWidth="0dp"
+                app:boxStrokeWidthFocused="0dp"
+                app:errorEnabled="true"
+                app:hintEnabled="false"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txtNamePlant">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/plantNameEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:drawablePadding="20dp"
+                    android:ems="10"
+                    android:fontFamily="@font/plus_jakarta_sans_medium"
+                    android:hint="Masukkan nama tanaman"
+                    android:inputType="text"
+                    android:padding="12dp"
+                    android:textColor="@color/blackText"
+                    android:textColorHint="@color/textColorHint"
+                    android:textSize="14sp"
+                    tools:ignore="SpeakableTextPresentCheck" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:id="@+id/txtType"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="35dp"
+                android:fontFamily="@font/plus_jakarta_sans_medium"
+                android:letterSpacing="-0.03"
+                android:text="Jenis Tanaman"
+                android:textColor="@color/blackText"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/plantNameEditTextLayout" />
+
+            <LinearLayout
+                android:id="@+id/radioGroup"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="20dp"
+                android:gravity="center"
+                android:orientation="horizontal"
+                app:layout_constraintTop_toBottomOf="@id/txtType">
+
+                <RadioGroup
+                    android:id="@+id/radio_filter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <RadioButton
+                        android:id="@+id/radio_indoor"
+                        android:layout_width="165dp"
+                        android:layout_height="40dp"
+                        android:layout_marginEnd="15dp"
+                        android:background="@drawable/radio_selector"
+                        android:button="@android:color/transparent"
+                        android:fontFamily="@font/plus_jakarta_sans_medium"
+                        android:paddingHorizontal="30dp"
+                        android:paddingVertical="10dp"
+                        android:text="Indoor"
+                        android:textAlignment="center"
+                        android:textColor="@drawable/text_selector"
+                        android:textSize="11sp" />
+
+                    <RadioButton
+                        android:id="@+id/radio_outdoor"
+                        android:layout_width="165dp"
+                        android:layout_height="40dp"
+                        android:layout_marginEnd="15dp"
+                        android:background="@drawable/radio_selector"
+                        android:button="@android:color/transparent"
+                        android:fontFamily="@font/plus_jakarta_sans_medium"
+                        android:paddingHorizontal="25dp"
+                        android:paddingVertical="10dp"
+                        android:text="Outdoor"
+                        android:textAlignment="center"
+                        android:textColor="@drawable/text_selector"
+                        android:textSize="11sp" />
+                </RadioGroup>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/indicator_plant"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="35dp"
+                android:orientation="vertical"
+                app:layout_constraintTop_toBottomOf="@id/radioGroup">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/plus_jakarta_sans_bold"
+                    android:text="Warna Daun"
+                    android:textColor="@color/blackText"
+                    android:textSize="12sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <ProgressBar
+                        android:id="@+id/progress_warna_daun"
+                        style="?android:attr/progressBarStyleHorizontal"
+                        android:layout_width="0dp"
+                        android:layout_height="10dp"
+                        android:layout_weight="1"
+                        android:progress="75"
+                        android:progressDrawable="@drawable/progress_bar_green" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:fontFamily="@font/plus_jakarta_sans_semibold"
+                        android:text="75%"
+                        android:textColor="@color/blackText"
+                        android:textSize="11sp" />
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:fontFamily="@font/plus_jakarta_sans_bold"
+                    android:text="Warna Batang"
+                    android:textColor="@color/blackText"
+                    android:textSize="12sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <ProgressBar
+                        android:id="@+id/progress_warna_batang"
+                        style="?android:attr/progressBarStyleHorizontal"
+                        android:layout_width="0dp"
+                        android:layout_height="10dp"
+                        android:layout_weight="1"
+                        android:progress="45"
+                        android:progressDrawable="@drawable/progress_bar_yellow" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:fontFamily="@font/plus_jakarta_sans_semibold"
+                        android:text="45%"
+                        android:textColor="@color/blackText"
+                        android:textSize="11sp" />
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:fontFamily="@font/plus_jakarta_sans_bold"
+                    android:text="Kualitas Bunga"
+                    android:textColor="@color/blackText"
+                    android:textSize="12sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <ProgressBar
+                        android:id="@+id/progress_kualitas_bunga"
+                        style="?android:attr/progressBarStyleHorizontal"
+                        android:layout_width="0dp"
+                        android:layout_height="10dp"
+                        android:layout_weight="1"
+                        android:progress="20"
+                        android:progressDrawable="@drawable/progress_bar_red" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:fontFamily="@font/plus_jakarta_sans_semibold"
+                        android:text="20%"
+                        android:textColor="@color/blackText"
+                        android:textSize="11sp" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/recommendedMedicine"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:fontFamily="@font/plus_jakarta_sans_medium"
+                android:text="Rekomendasi Obat"
+                android:textColor="@color/blackText"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/indicator_plant" />
+            
+            <HorizontalScrollView
+                android:id="@+id/scroll_item"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:orientation="horizontal"
+                android:scrollbars="none"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@id/recommendedMedicine"
+                app:layout_constraintTop_toBottomOf="@id/recommendedMedicine">
+
+                <LinearLayout
+                    android:id="@+id/item_group"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="20dp"
+                    android:orientation="horizontal">
+
+                    <include
+                        android:id="@+id/item1"
+                        android:layout_width="155dp"
+                        android:layout_height="200dp"
+                        android:layout_marginEnd="15dp"
+                        layout="@layout/item_recommendation_medicine"/>
+
+                    <include
+                        android:id="@+id/item2"
+                        android:layout_width="155dp"
+                        android:layout_height="200dp"
+                        android:layout_marginEnd="15dp"
+                        layout="@layout/item_recommendation_medicine"/>
+
+                    <include
+                        android:id="@+id/item3"
+                        android:layout_width="155dp"
+                        android:layout_height="200dp"
+                        android:layout_marginEnd="15dp"
+                        layout="@layout/item_recommendation_medicine"/>
+
+                    <include
+                        android:id="@+id/item4"
+                        android:layout_width="155dp"
+                        android:layout_height="200dp"
+                        android:layout_marginEnd="15dp"
+                        layout="@layout/item_recommendation_medicine"/>
+                </LinearLayout>
+            </HorizontalScrollView>
+
+            <Button
+                android:id="@+id/btnSave"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="28dp"
+                android:text="Save"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:layout_marginBottom="30dp"
+                android:fontFamily="@font/plus_jakarta_sans_bold"
+                android:background="@drawable/bg_button_welcome"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/scroll_item"
+                app:layout_constraintBottom_toBottomOf="parent" />
+
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</FrameLayout>

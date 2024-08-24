@@ -1,0 +1,294 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:fitsSystemWindows="true"
+    android:fillViewport="true"
+    android:background="#F7F7F7"
+    android:scrollbars="none"
+    tools:context=".ui.scan.list.ListScanFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/bg_header"
+            android:layout_width="match_parent"
+            android:layout_height="205dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/bg_welcome_page"/>
+
+        <TextView
+            android:id="@+id/titleHeader"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:textSize="24sp"
+            android:lineHeight="35dp"
+            android:text="@string/title_header"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="@id/bg_header"
+            android:fontFamily="@font/plus_jakarta_sans_extra"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+        
+        <ImageView
+            android:id="@+id/ic_plant"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginTop="20dp"
+            android:src="@drawable/ic_plant"
+            app:layout_constraintStart_toStartOf="@id/titleHeader"
+            app:layout_constraintTop_toBottomOf="@id/titleHeader"/>
+
+        <TextView
+            android:id="@+id/countPlant"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:textSize="16sp"
+            android:text="@string/dummy_count_plant"
+            android:textColor="@color/white"
+            android:fontFamily="@font/plus_jakarta_sans_medium"
+            app:layout_constraintTop_toTopOf="@id/ic_plant"
+            app:layout_constraintStart_toEndOf="@id/ic_plant"
+            app:layout_constraintBottom_toBottomOf="@id/ic_plant"/>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/searchEditTextLayout"
+            android:layout_width="0dp"
+            android:layout_height="45dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="15dp"
+            android:layout_marginTop="25dp"
+            android:background="@drawable/bg_text_field"
+            app:boxStrokeWidth="0dp"
+            app:boxStrokeWidthFocused="0dp"
+            app:errorEnabled="true"
+            app:hintEnabled="false"
+            app:layout_constraintTop_toBottomOf="@+id/bg_header"
+            app:layout_constraintEnd_toStartOf="@id/ic_scan"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/searchEditText"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:drawableEnd="@drawable/ic_search"
+                android:ems="10"
+                android:fontFamily="@font/plus_jakarta_sans_medium"
+                android:hint="@string/search_plant"
+                android:textColor="@color/blackText"
+                android:textColorHint="@color/textColorHint"
+                android:inputType="textEmailAddress"
+                android:padding="12dp"
+                android:textSize="14sp" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+        
+        <ImageView
+            android:id="@+id/ic_scan"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:padding="10dp"
+            android:background="@drawable/bg_button_scan"
+            android:src="@drawable/ic_scan_white"
+            android:layout_marginEnd="30dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="@id/searchEditTextLayout"
+            app:layout_constraintTop_toTopOf="@id/searchEditTextLayout"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_item_scan"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:layout_marginHorizontal="30dp"
+            tools:listitem="@layout/item_scan_plant"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/searchEditTextLayout"/>
+
+<!--        <TextView-->
+<!--            android:id="@+id/name_apps"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginStart="30dp"-->
+<!--            android:layout_marginTop="50dp"-->
+<!--            android:fontFamily="@font/plus_jakarta_sans_extra"-->
+<!--            android:textSize="24sp"-->
+<!--            android:textColor="@color/blackText"-->
+<!--            android:text="@string/app_name"-->
+<!--            app:layout_constraintTop_toTopOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"/>-->
+
+<!--        <TextView-->
+<!--            android:id="@+id/desc_app"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginTop="5dp"-->
+<!--            android:fontFamily="@font/plus_jakarta_sans_medium"-->
+<!--            android:textSize="12sp"-->
+<!--            android:textColor="#A5A5A5"-->
+<!--            android:text="Data tanaman hasil deteksi pengguna"-->
+<!--            app:layout_constraintTop_toBottomOf="@id/name_apps"-->
+<!--            app:layout_constraintStart_toStartOf="@id/name_apps"/>-->
+<!--        -->
+<!--        <ImageView-->
+<!--            android:id="@+id/btnScan"-->
+<!--            android:layout_width="40dp"-->
+<!--            android:layout_height="40dp"-->
+<!--            android:src="@drawable/ic_scan"-->
+<!--            android:layout_marginEnd="30dp"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintTop_toTopOf="@id/name_apps"-->
+<!--            app:layout_constraintBottom_toBottomOf="@id/desc_app"/>-->
+
+<!--        <HorizontalScrollView-->
+<!--            android:id="@+id/scroll_radio"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginTop="25dp"-->
+<!--            android:orientation="horizontal"-->
+<!--            android:layout_marginStart="30dp"-->
+<!--            android:scrollbars="none"-->
+<!--            app:layout_constraintStart_toStartOf="@id/name_apps"-->
+<!--            app:layout_constraintTop_toBottomOf="@id/desc_app">-->
+
+<!--            <LinearLayout-->
+<!--                android:id="@+id/radioGroup"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginEnd="20dp"-->
+<!--                android:orientation="horizontal">-->
+
+<!--                <RadioGroup-->
+<!--                    android:id="@+id/radio_filter"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:orientation="horizontal">-->
+
+<!--                    <RadioButton-->
+<!--                        android:id="@+id/radio_semua"-->
+<!--                        android:layout_width="100dp"-->
+<!--                        android:layout_height="40dp"-->
+<!--                        android:layout_marginEnd="15dp"-->
+<!--                        android:background="@drawable/radio_selector"-->
+<!--                        android:button="@android:color/transparent"-->
+<!--                        android:fontFamily="@font/plus_jakarta_sans_medium"-->
+<!--                        android:paddingHorizontal="30dp"-->
+<!--                        android:paddingVertical="10dp"-->
+<!--                        android:text="Semua"-->
+<!--                        android:textAlignment="center"-->
+<!--                        android:textColor="@drawable/text_selector"-->
+<!--                        android:textSize="11sp" />-->
+
+<!--                    <RadioButton-->
+<!--                        android:id="@+id/radio_disetujui"-->
+<!--                        android:layout_width="100dp"-->
+<!--                        android:layout_height="40dp"-->
+<!--                        android:layout_marginEnd="15dp"-->
+<!--                        android:background="@drawable/radio_selector"-->
+<!--                        android:button="@android:color/transparent"-->
+<!--                        android:fontFamily="@font/plus_jakarta_sans_medium"-->
+<!--                        android:paddingHorizontal="25dp"-->
+<!--                        android:paddingVertical="10dp"-->
+<!--                        android:text="Sehat"-->
+<!--                        android:textAlignment="center"-->
+<!--                        android:textColor="@drawable/text_selector"-->
+<!--                        android:textSize="11sp" />-->
+
+<!--                    <RadioButton-->
+<!--                        android:id="@+id/radio_belum_bayar"-->
+<!--                        android:layout_width="120dp"-->
+<!--                        android:layout_height="40dp"-->
+<!--                        android:layout_marginEnd="15dp"-->
+<!--                        android:background="@drawable/radio_selector"-->
+<!--                        android:button="@android:color/transparent"-->
+<!--                        android:fontFamily="@font/plus_jakarta_sans_medium"-->
+<!--                        android:paddingHorizontal="25dp"-->
+<!--                        android:paddingVertical="10dp"-->
+<!--                        android:text="Tidak Sehat"-->
+<!--                        android:textAlignment="center"-->
+<!--                        android:textColor="@drawable/text_selector"-->
+<!--                        android:textSize="11sp" />-->
+
+<!--                    <RadioButton-->
+<!--                        android:id="@+id/radio_sudah_bayar"-->
+<!--                        android:layout_width="120dp"-->
+<!--                        android:layout_height="40dp"-->
+<!--                        android:layout_marginEnd="15dp"-->
+<!--                        android:background="@drawable/radio_selector"-->
+<!--                        android:button="@android:color/transparent"-->
+<!--                        android:fontFamily="@font/plus_jakarta_sans_medium"-->
+<!--                        android:paddingHorizontal="25dp"-->
+<!--                        android:paddingVertical="10dp"-->
+<!--                        android:text="Kurang Sehat"-->
+<!--                        android:textAlignment="center"-->
+<!--                        android:textColor="@drawable/text_selector"-->
+<!--                        android:textSize="11sp" />-->
+<!--                </RadioGroup>-->
+<!--            </LinearLayout>-->
+<!--        </HorizontalScrollView>-->
+
+<!--        <TextView-->
+<!--            android:id="@+id/items_available"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginTop="35dp"-->
+<!--            android:fontFamily="@font/plus_jakarta_sans_bold"-->
+<!--            android:textSize="16sp"-->
+<!--            android:textColor="@color/blackText"-->
+<!--            android:text="4 Items Availabble"-->
+<!--            app:layout_constraintStart_toStartOf="@id/name_apps"-->
+<!--            app:layout_constraintTop_toBottomOf="@id/scroll_radio"/>-->
+
+<!--        <include-->
+<!--            android:id="@+id/list_card"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="130dp"-->
+<!--            layout="@layout/card_scan"-->
+<!--            android:layout_marginTop="25dp"-->
+<!--            android:layout_marginHorizontal="30dp"-->
+<!--            app:layout_constraintTop_toBottomOf="@id/items_available"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"/>-->
+
+<!--        <include-->
+<!--            android:id="@+id/list_card2"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="130dp"-->
+<!--            layout="@layout/card_scan"-->
+<!--            android:layout_marginTop="15dp"-->
+<!--            android:layout_marginHorizontal="30dp"-->
+<!--            app:layout_constraintTop_toBottomOf="@id/list_card"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"/>-->
+
+<!--        <include-->
+<!--            android:id="@+id/list_card3"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="130dp"-->
+<!--            layout="@layout/card_scan"-->
+<!--            android:layout_marginTop="15dp"-->
+<!--            android:layout_marginHorizontal="30dp"-->
+<!--            app:layout_constraintTop_toBottomOf="@id/list_card2"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"/>-->
+
+<!--        <include-->
+<!--            android:id="@+id/list_card4"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="130dp"-->
+<!--            layout="@layout/card_scan"-->
+<!--            android:layout_marginTop="15dp"-->
+<!--            android:layout_marginHorizontal="30dp"-->
+<!--            app:layout_constraintTop_toBottomOf="@id/list_card3"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"/>-->
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>
