@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/img_plant"
+        android:layout_width="match_parent"
+        android:layout_height="340dp"
+        android:background="@drawable/skeleton_background"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/namePlant"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="35dp"
+        android:background="@drawable/skeleton_background"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/img_plant"/>
+
+    <TextView
+        android:id="@+id/scientificPlant"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/skeleton_background"
+        app:layout_constraintStart_toStartOf="@id/namePlant"
+        app:layout_constraintTop_toBottomOf="@id/namePlant"/>
+
+    <TextView
+        android:id="@+id/plantType"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/skeleton_background"
+        app:layout_constraintStart_toStartOf="@id/namePlant"
+        app:layout_constraintTop_toBottomOf="@id/scientificPlant"/>
+
+    <LinearLayout
+        android:id="@+id/tabs"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="25dp"
+        android:layout_marginHorizontal="30dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/plantType">
+        <TextView
+            android:id="@+id/overview"
+            android:layout_width="0dp"
+            android:layout_height="45dp"
+            android:layout_weight="1"
+            android:layout_marginEnd="10dp"
+            android:background="@drawable/skeleton_background" />
+        <TextView
+            android:id="@+id/scan"
+            android:layout_width="0dp"
+            android:layout_height="45dp"
+            android:layout_weight="1"
+            android:background="@drawable/skeleton_background" />
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/card_information"
+        android:layout_width="0dp"
+        android:layout_height="150dp"
+        android:background="@drawable/skeleton_background"
+        android:layout_marginTop="30dp"
+        android:layout_marginHorizontal="30dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tabs" />
+
+    <TextView
+        android:id="@+id/care"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/skeleton_background"
+        app:layout_constraintStart_toStartOf="@id/card_information"
+        app:layout_constraintTop_toBottomOf="@id/card_information" />
+
+    <TextView
+        android:id="@+id/care_plant"
+        android:layout_width="0dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="30dp"
+        android:fontFamily="@font/plus_jakarta_sans_regular"
+        android:background="@drawable/skeleton_background"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/care"
+        app:layout_constraintTop_toBottomOf="@id/care" />
+
+    <TextView
+        android:id="@+id/disease"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/skeleton_background"
+        app:layout_constraintStart_toStartOf="@id/care_plant"
+        app:layout_constraintTop_toBottomOf="@id/care_plant" />
+
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="130dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/skeleton_background"
+        app:layout_constraintStart_toStartOf="@id/disease"
+        app:layout_constraintTop_toBottomOf="@id/disease" />
+
+    <TextView
+        android:id="@+id/nameDisease"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:background="@drawable/skeleton_background"
+        app:layout_constraintStart_toEndOf="@id/name"
+        app:layout_constraintTop_toTopOf="@id/name" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

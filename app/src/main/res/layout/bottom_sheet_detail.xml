@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    android:id="@+id/bottom_sheet"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:background="@drawable/frame_auth"
+    style="@style/Widget.Material3.BottomSheet"
+    android:layout_height="wrap_content"
+    android:paddingBottom="30dp"
+    android:fitsSystemWindows="true"
+    android:fillViewport="true"
+    android:scrollbars="none"
+    android:nestedScrollingEnabled="true"
+    app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    <com.google.android.material.bottomsheet.BottomSheetDragHandleView
+        android:id="@+id/drag_handle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <TextView
+        android:id="@+id/detail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:fontFamily="@font/plus_jakarta_sans_bold"
+        android:text="Detail Tanaman"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/drag_handle"/>
+    
+    <ImageView
+        android:id="@+id/ic_close"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginEnd="30dp"
+        android:src="@drawable/ic_close"
+        app:layout_constraintBottom_toBottomOf="@id/detail"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/detail"/>
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/imgPlant"
+        android:layout_width="0dp"
+        android:layout_height="220dp"
+        android:layout_marginTop="20dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/dummy_img_item"
+        app:layout_constraintEnd_toEndOf="@id/ic_close"
+        app:layout_constraintTop_toBottomOf="@id/detail"
+        app:layout_constraintStart_toStartOf="@id/detail"
+        app:shapeAppearanceOverlay="@style/RoundedItemScan" />
+
+    <LinearLayout
+        android:id="@+id/information"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/bg_info_health"
+        android:orientation="horizontal"
+        android:padding="5dp"
+        app:layout_constraintEnd_toEndOf="@id/imgPlant"
+        app:layout_constraintStart_toStartOf="@id/imgPlant"
+        app:layout_constraintTop_toBottomOf="@id/imgPlant">
+        <ImageView
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:layout_marginTop="3dp"
+            android:layout_marginEnd="5dp"
+            android:src="@drawable/ic_info" />
+        <TextView
+            android:id="@+id/information_plant"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:lineHeight="20dp"
+            android:fontFamily="@font/plus_jakarta_sans_bold"
+            android:text="Tanamanmu terlihat sehat. Pantau terus kesehatan tanamanmu!"
+            android:textColor="@color/blackText" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/care"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/plus_jakarta_sans_bold"
+        android:text="Perawatan Tanaman"
+        android:layout_marginTop="15dp"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@id/information"
+        app:layout_constraintTop_toBottomOf="@id/information"/>
+
+    <TextView
+        android:id="@+id/care_plant"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:fontFamily="@font/plus_jakarta_sans_regular"
+        android:text="@string/dummy_symptoms_disease"
+        android:textColor="#80303030"
+        android:layout_marginEnd="30dp"
+        android:lineHeight="20dp"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/care"
+        app:layout_constraintTop_toBottomOf="@id/care" />
+
+    <TextView
+        android:id="@+id/cause"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/plus_jakarta_sans_bold"
+        android:text="Penyebab"
+        android:layout_marginTop="15dp"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@id/care_plant"
+        app:layout_constraintTop_toBottomOf="@id/care_plant"/>
+
+    <TextView
+        android:id="@+id/cause_plant"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:fontFamily="@font/plus_jakarta_sans_regular"
+        android:text="@string/dummy_symptoms_disease"
+        android:textColor="#80303030"
+        android:layout_marginEnd="30dp"
+        android:lineHeight="20dp"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/cause"
+        app:layout_constraintTop_toBottomOf="@id/cause" />
+
+    <TextView
+        android:id="@+id/symptoms"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/plus_jakarta_sans_bold"
+        android:text="Gejala"
+        android:layout_marginTop="15dp"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@id/cause_plant"
+        app:layout_constraintTop_toBottomOf="@id/cause_plant"/>
+
+    <TextView
+        android:id="@+id/symptoms_plant"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:fontFamily="@font/plus_jakarta_sans_regular"
+        android:text="@string/dummy_symptoms_disease"
+        android:textColor="#80303030"
+        android:layout_marginEnd="30dp"
+        android:lineHeight="20dp"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/symptoms"
+        app:layout_constraintTop_toBottomOf="@id/symptoms" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>

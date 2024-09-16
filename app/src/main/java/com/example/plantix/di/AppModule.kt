@@ -9,6 +9,7 @@ import com.example.plantix.ui.auth.register.RegisterViewModel
 import com.example.plantix.ui.main.MainViewModel
 import com.example.plantix.ui.news.NewsViewModel
 import com.example.plantix.ui.profile.ProfileViewModel
+import com.example.plantix.ui.scan.DetectionViewModel
 import org.koin.android.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
@@ -23,4 +24,5 @@ val viewModelModule = module {
     viewModel { RegisterViewModel(get()) }
     viewModel { MainViewModel(get()) }
     viewModel { ProfileViewModel(get()) }
+    viewModel { DetectionViewModel(get()) }
 }

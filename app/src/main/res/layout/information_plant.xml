@@ -43,16 +43,19 @@
             android:orientation="horizontal"
             app:layout_constraintStart_toStartOf="@id/title"
             app:layout_constraintTop_toBottomOf="@id/title">
+
             <TextView
+                android:id="@+id/desc"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="2dp"
                 android:fontFamily="@font/plus_jakarta_sans_bold"
                 android:text="terlihat"
                 android:textColor="@color/black"
                 android:textSize="16sp"
-                android:layout_marginEnd="2dp"
                 app:layout_constraintStart_toEndOf="@id/imgPlant"
                 app:layout_constraintTop_toTopOf="@id/imgPlant" />
+
             <TextView
                 android:id="@+id/plantDescription"
                 android:layout_width="wrap_content"
@@ -61,45 +64,47 @@
                 android:text="Sehat"
                 android:textColor="@color/primary_color"
                 android:textSize="16sp" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="2dp"
                 android:fontFamily="@font/plus_jakarta_sans_bold"
                 android:text="!"
                 android:textColor="@color/black"
                 android:textSize="16sp"
-                android:layout_marginEnd="2dp"
                 app:layout_constraintStart_toEndOf="@id/imgPlant"
                 app:layout_constraintTop_toTopOf="@id/imgPlant" />
         </LinearLayout>
 
         <LinearLayout
             android:id="@+id/information"
-            android:layout_width="wrap_content"
+            android:layout_width="180dp"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:padding="5dp"
+            android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
             android:background="@drawable/bg_info_health"
+            android:orientation="horizontal"
+            android:padding="5dp"
             app:layout_constraintStart_toStartOf="@id/description"
-            app:layout_constraintBottom_toBottomOf="@id/imgPlant">
-            
+            app:layout_constraintTop_toBottomOf="@id/description">
+
             <ImageView
                 android:layout_width="8dp"
                 android:layout_height="8dp"
-                android:layout_marginEnd="5dp"
                 android:layout_marginTop="3dp"
-                android:src="@drawable/ic_info"/>
+                android:layout_marginEnd="5dp"
+                android:src="@drawable/ic_info" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/plus_jakarta_sans_medium"
-                android:textSize="8dp"
-                android:textColor="#797979"
                 android:layout_gravity="center"
-                android:text="@string/check_health"/>
-            
+                android:fontFamily="@font/plus_jakarta_sans_medium"
+                android:text="@string/check_health"
+                android:textColor="#797979"
+                android:textSize="10dp" />
+
         </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,11 +1,22 @@
 package com.example.core.data.source.remote
 
+import android.util.Log
+import androidx.datastore.preferences.protobuf.Api
 import com.example.core.data.source.remote.network.ApiResponse
 import com.example.core.data.source.remote.network.MainApiService
 import com.example.core.data.source.remote.network.NewsApiService
+import com.example.core.data.source.remote.response.DetailDiseaseResponse
+import com.example.core.data.source.remote.response.DetailUser
+import com.example.core.data.source.remote.response.DetectionDiseaseResponse
+import com.example.core.data.source.remote.response.ListDetectionResponse
 import com.example.core.data.source.remote.response.LoginResponse
 import com.example.core.data.source.remote.response.NewsResponse
+import com.example.core.data.source.remote.response.PlantCreateResponse
 import com.example.core.data.source.remote.response.RegisterResponse
+import com.example.core.data.source.remote.response.RequestDataDetection
+import com.example.core.data.source.remote.response.UserDetailResponse
+import com.example.core.utils.DataMapper
+import com.example.core.utils.DataMapper.parseErrorMessage
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -72,4 +83,104 @@ class RemoteDataSource(
             emit(ApiResponse.Error("Tidak ada koneksi internet. Silakan coba lagi"))
         }
     }.flowOn(Dispatchers.IO)
+
+    suspend fun detailUser(userId: Int): Flow<ApiResponse<UserDetailResponse>> = flow {
+        try {
+            val response = mainApiService.detailUser(userId)
+            emit(ApiResponse.Success(response))
+        } catch (e: Exception) {
+            Log.d("UsersDetail", "error: ${e.message}")
+            emit(ApiResponse.Error("Terjadi kesalahan. Silakan coba lagi"))
+        } catch (e: IOException) {
+            emit(ApiResponse.Error("Tidak ada koneksi internet. Silakan coba lagi"))
+        }
+    }.flowOn(Dispatchers.IO)
+
+    suspend fun updateProfile(
+        userId: Int,
+        data: DetailUser
+    ): Flow<ApiResponse<UserDetailResponse>> = flow {
+        try {
+            val user = DataMapper.updateUserMapping(data)
+            val response = mainApiService.updateProfileUser(userId, user)
+            emit(ApiResponse.Success(response))
+        } catch (e: Exception) {
+            Log.d("UsersDetail", "error: ${e.message}")
+            emit(ApiResponse.Error("Terjadi kesalahan. Silakan coba lagi"))
+        } catch (e: IOException) {
+            emit(ApiResponse.Error("Tidak ada koneksi internet. Silakan coba lagi"))
+        }
+    }.flowOn(Dispatchers.IO)
+
+    suspend fun detectionDisease(
+        detection: RequestDataDetection
+    ): Flow<ApiResponse<DetectionDiseaseResponse>> = flow {
+        try {
+            val data = DataMapper.requestDetection(detection)
+            val response = mainApiService.detectionDisease(data)
+            emit(ApiResponse.Success(response))
+        } catch (e: HttpException) {
+            val errorBody = e.response()?.errorBody()?.string()
+            val errorMessage = parseErrorMessage(errorBody)
+            Log.d("DetectionDisease", "error: $errorMessage")
+            emit(ApiResponse.Error("Tanaman gagal di deteksi!Silahkan coba lagi nanti"))
+        } catch (e: Exception) {
+            Log.d("DetectionDisease", "error: ${e.message}")
+            emit(ApiResponse.Error("Tanaman gagal di deteksi!Silahkan coba lagi nanti"))
+        } catch (e: IOException) {
+            emit(ApiResponse.Error("Tidak ada koneksi internet. Silakan coba lagi"))
+        }
+    }.flowOn(Dispatchers.IO)
+
+    suspend fun getDetailDetection(id: Int): Flow<ApiResponse<DetailDiseaseResponse>> = flow {
+        try {
+            val response = mainApiService.getDetailDetection(id)
+            emit(ApiResponse.Success(response))
+        } catch (e: HttpException) {
+            val errorBody = e.response()?.errorBody()?.string()
+            val errorMessage = parseErrorMessage(errorBody)
+            Log.d("DetailDetection", "error: $errorMessage")
+            emit(ApiResponse.Error(errorMessage))
+        } catch (e: Exception) {
+            Log.d("DetailDetection", "error: ${e.message}")
+            emit(ApiResponse.Error("Terjadi kesalahan. Silakan coba lagi"))
+        } catch (e: IOException) {
+            emit(ApiResponse.Error("Tidak ada koneksi internet. Silakan coba lagi"))
+        }
+    }.flowOn(Dispatchers.IO)
+
+    suspend fun getUserDetection(userId: Int): Flow<ApiResponse<ListDetectionResponse>> = flow {
+        try {
+            val response = mainApiService.getUserDetection(userId)
+            emit(ApiResponse.Success(response))
+        } catch (e: HttpException) {
+            val errorBody = e.response()?.errorBody()?.string()
+            val errorMessage = parseErrorMessage(errorBody)
+            Log.d("ListUserDetection", "error: $errorMessage")
+            emit(ApiResponse.Error(errorMessage))
+        } catch (e: Exception) {
+            Log.d("ListUserDetection", "error: ${e.message}")
+            emit(ApiResponse.Error("Terjadi kesalahan. Silakan coba lagi"))
+        } catch (e: IOException) {
+            emit(ApiResponse.Error("Tidak ada koneksi internet. Silakan coba lagi"))
+        }
+    }.flowOn(Dispatchers.IO)
+
+    suspend fun createPlant(userId: Int, name: String): Flow<ApiResponse<PlantCreateResponse>> =
+        flow<ApiResponse<PlantCreateResponse>> {
+            try {
+                val response = mainApiService.createPlant(userId, name)
+                emit(ApiResponse.Success(response))
+            } catch (e: HttpException) {
+                val errorBody = e.response()?.errorBody()?.string()
+                val errorMessage = parseErrorMessage(errorBody)
+                Log.d("PlantCreate", "error: $errorMessage")
+                emit(ApiResponse.Error("Tanaman gagal di deteksi!Silahkan coba lagi nanti"))
+            } catch (e: Exception) {
+                Log.d("PlantCreate", "error: ${e.message}")
+                emit(ApiResponse.Error("Tanaman gagal di deteksi!Silahkan coba lagi nanti"))
+            } catch (e: IOException) {
+                emit(ApiResponse.Error("Tidak ada koneksi internet. Silakan coba lagi"))
+            }
+        }.flowOn(Dispatchers.IO)
 }

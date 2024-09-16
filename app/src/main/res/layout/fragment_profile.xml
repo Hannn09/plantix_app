@@ -11,7 +11,7 @@
         android:id="@+id/profile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Profile"
+        android:text="Edit"
         android:layout_marginTop="45dp"
         android:layout_marginStart="30dp"
         android:textSize="24sp"
@@ -30,62 +30,87 @@
         app:layout_constraintBottom_toBottomOf="@id/profile"
         app:layout_constraintTop_toTopOf="@id/profile"/>
 
-    <ImageView
-        android:id="@+id/cover"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:src="@drawable/rounded"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/profile"/>
-    
-    <com.google.android.material.imageview.ShapeableImageView
-        android:id="@+id/profile_dummy"
-        android:layout_width="90dp"
-        android:layout_height="90dp"
-        app:shapeAppearanceOverlay="@style/RoundedImageView"
-        android:src="@drawable/profile_dummy_user"
-        app:layout_constraintStart_toStartOf="@id/cover"
-        app:layout_constraintEnd_toEndOf="@id/cover"
-        app:layout_constraintBottom_toBottomOf="@id/cover"
-        app:layout_constraintTop_toTopOf="@+id/cover"/>
-
-    <TextView
-        android:id="@+id/name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:textSize="22sp"
-        android:fontFamily="@font/plus_jakarta_sans_bold"
-        android:text="John Doe"
-        android:textColor="@color/blackText"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/cover"/>
-
-    <TextView
-        android:id="@+id/email"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:textSize="12sp"
-        android:fontFamily="@font/plus_jakarta_sans_regular"
-        android:text="johndoe@gmail.com"
-        android:textColor="@color/blackText"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/name"/>
-
-    <include
-        android:id="@+id/card_detail"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/content_profile"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
-        layout="@layout/card_detail_user"
-        android:layout_marginHorizontal="45dp"
-        app:layout_constraintTop_toBottomOf="@id/email"
+        app:layout_constraintTop_toBottomOf="@id/profile"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"/>
+        app:layout_constraintStart_toStartOf="parent">
+
+        <ImageView
+            android:id="@+id/cover"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:src="@drawable/rounded"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/profile"/>
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/profile_dummy"
+            android:layout_width="90dp"
+            android:layout_height="90dp"
+            android:src="@drawable/profile_dummy_user"
+            app:layout_constraintStart_toStartOf="@id/cover"
+            app:layout_constraintEnd_toEndOf="@id/cover"
+            app:layout_constraintBottom_toBottomOf="@id/cover"
+            app:layout_constraintTop_toTopOf="@+id/cover"/>
+
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:textSize="22sp"
+            android:fontFamily="@font/plus_jakarta_sans_bold"
+            android:text="John Doe"
+            android:textColor="@color/blackText"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/cover"/>
+
+        <TextView
+            android:id="@+id/email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:textSize="12sp"
+            android:fontFamily="@font/plus_jakarta_sans_regular"
+            android:text="johndoe@gmail.com"
+            android:textColor="@color/blackText"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/name"/>
+
+        <include
+            android:id="@+id/card_detail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            layout="@layout/card_detail_user"
+            android:layout_marginHorizontal="45dp"
+            app:layout_constraintTop_toBottomOf="@id/email"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+    <com.facebook.shimmer.ShimmerFrameLayout
+        android:id="@+id/shimmer_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:shimmer_duration="800"
+        android:layout_marginTop="40dp"
+        app:layout_constraintTop_toBottomOf="@id/profile"
+        app:layout_constraintEnd_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <include layout="@layout/skeleton_profile" />
+    </com.facebook.shimmer.ShimmerFrameLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

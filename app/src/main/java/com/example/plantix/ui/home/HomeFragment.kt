@@ -16,6 +16,7 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.core.app.ActivityOptionsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.bumptech.glide.Glide
 import com.example.core.BuildConfig
 import com.example.core.data.Resource
 import com.example.core.domain.model.ArticlesItem
@@ -23,11 +24,14 @@ import com.example.core.ui.BannerNewsAdapter
 import com.example.core.ui.NewsItemAdapter
 import com.example.plantix.R
 import com.example.plantix.databinding.FragmentHomeBinding
+import com.example.plantix.ui.auth.login.LoginViewModel
 import com.example.plantix.ui.main.MainViewModel
 import com.example.plantix.ui.news.DetailNewsActivity
 import com.example.plantix.ui.news.NewsViewModel
+import com.example.plantix.ui.profile.ProfileViewModel
 import com.facebook.shimmer.ShimmerFrameLayout
 import org.koin.android.viewmodel.ext.android.viewModel
+import java.util.Calendar
 
 
 class HomeFragment : Fragment() {
@@ -36,9 +40,14 @@ class HomeFragment : Fragment() {
 
     private val newsViewModel: NewsViewModel by viewModel()
 
-    private val mainViewModel: MainViewModel by viewModel()
+
+    private val loginViewModel: LoginViewModel by viewModel()
+
+    private val profileViewModel: ProfileViewModel by viewModel()
 
     private var isErrorDialogShown = false
+
+    private var userId: Int? = null
 
     private lateinit var shimmerFrameLayout: ShimmerFrameLayout
 
@@ -65,33 +74,63 @@ class HomeFragment : Fragment() {
     private fun observeData() {
         newsViewModel.getNews("plants", "en", BuildConfig.API_KEY)
         newsViewModel.getBannerNews("plants awareness", "en", BuildConfig.API_KEY)
-        mainViewModel.getUsername()
-        getUsernameResult()
+        loginViewModel.getUserId()
+        loginViewModel.userId.observe(viewLifecycleOwner) {
+            when (it) {
+                is Resource.Loading -> {}
+                is Resource.Success -> {
+                    userId = it.data
+                    profileViewModel.getDetailUser(it.data)
+                }
+
+                is Resource.Error -> {}
+            }
+        }
+        detailUserResult()
         getNewsResult()
         getBannerNewsResult()
+    }
+
+    private fun detailUserResult() {
+        profileViewModel.detailUser.observe(viewLifecycleOwner) {
+            when (it) {
+                is Resource.Loading -> {}
+                is Resource.Success -> {
+                    val data = it.data.data?.first()
+                    val name = data?.username?.split(" ")?.joinToString(separator = " ") { it.capitalize() }
+                    val fullName = data?.fullName?.split(" ")?.joinToString(separator = " ") { it.capitalize() }
+                    val profileImage = data?.profilePictureUrl
+
+                    val imageUrl = "https://storage.googleapis.com/bucket-adoptify/plantixImagesUser/$profileImage"
+                    homeFragment.name.text = fullName ?: name
+                    Glide.with(requireContext())
+                        .load(imageUrl)
+                        .placeholder(R.drawable.profile_dummy_user)
+                        .into(homeFragment.imageProfile)
+                }
+
+                is Resource.Error -> {
+                    Log.e("HomeFragment", "error: ${it.message}")
+                }
+            }
+        }
     }
 
     private fun setupView() {
         homeFragment.apply {
             radioFilter.check(R.id.radio_for_you)
+            greeting.text = getGreetingMessage()
         }
     }
 
-    private fun getUsernameResult() {
-        mainViewModel.username.observe(viewLifecycleOwner) { username ->
-            when (username) {
-                is Resource.Loading -> showLoading(true)
-                is Resource.Success -> {
-                    showLoading(false)
-                    val name = username.data.split(" ").joinToString(separator = " ") { it.capitalize() }
-                    homeFragment.name.text = name
-                }
-
-                is Resource.Error -> {
-                    showLoading(false)
-                    Log.e("HomeFragment", "error: ${username.message}")
-                }
-            }
+    private fun getGreetingMessage(): String {
+        val calendar = Calendar.getInstance()
+        val hourOfDay = calendar.get(Calendar.HOUR_OF_DAY)
+        return when (hourOfDay) {
+            in 5..11 -> "Good Morning"
+            in 12..16 -> "Good Afternoon"
+            in 17..20 -> "Good Evening"
+            else -> "Good Night"
         }
     }
 
@@ -144,10 +183,9 @@ class HomeFragment : Fragment() {
                     R.anim.slide_in_right,
                     R.anim.slide_out_left
                 )
-                startActivity(
-                    Intent(requireContext(), DetailNewsActivity::class.java),
-                    options.toBundle()
-                )
+                val intent = Intent(requireContext(), DetailNewsActivity::class.java)
+                intent.putExtra("NEWS_URL", it.url)
+                startActivity(intent, options.toBundle())
             }
             setHasFixedSize(true)
             layoutManager = LinearLayoutManager(requireContext())
@@ -158,7 +196,20 @@ class HomeFragment : Fragment() {
         homeFragment.apply {
             val indicator = dotsIndicator
             val viewPager = newsRecommended
-            val adapter = BannerNewsAdapter(data.take(3)) {}
+            val adapter = BannerNewsAdapter(data.take(3)) {
+                val options = ActivityOptionsCompat.makeCustomAnimation(
+                    requireContext(),
+                    R.anim.slide_in_right,
+                    R.anim.slide_out_left
+                )
+                val newsListUrl = data.map { it.url }
+
+                val newsUrl = newsListUrl.firstOrNull() ?: ""
+
+                val intent = Intent(requireContext(), DetailNewsActivity::class.java)
+                intent.putExtra("NEWS_URL", newsUrl)
+                startActivity(intent, options.toBundle())
+            }
             viewPager.adapter = adapter
             indicator.attachTo(viewPager)
         }

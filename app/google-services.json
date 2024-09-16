@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "161539208057",
+    "project_id": "plantix-92dbd",
+    "storage_bucket": "plantix-92dbd.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:161539208057:android:335e8bd168e263f15a35a8",
+        "android_client_info": {
+          "package_name": "plantix.itn.ac.id"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDPCgLkxn71kEiH5WPRYIwKxYjIaxEojrU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:161539208057:android:816f9e6c10603dba5a35a8",
+        "android_client_info": {
+          "package_name": "plantix.itnmalang.ac.id"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDPCgLkxn71kEiH5WPRYIwKxYjIaxEojrU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

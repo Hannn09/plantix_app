@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsKotlinAndroid)
+    id("com.google.gms.google-services")
 }
 
 apply(from = "../shared_dependencies.gradle")
@@ -10,10 +11,10 @@ android {
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.plantix.android"
+        applicationId = "plantix.itn.ac.id"
         minSdk = 21
         targetSdk = 34
-        versionCode = 1
+        versionCode = 3
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
@@ -69,5 +70,15 @@ dependencies {
 
     //activity
     implementation(libs.androidx.activity)
+
+    //firebase
+    implementation(platform("com.google.firebase:firebase-bom:33.1.2"))
+    implementation("com.google.firebase:firebase-analytics")
+
+    //circle image
+    implementation("de.hdodenhof:circleimageview:3.1.0")
+    implementation(libs.androidx.appcompat)
+    implementation(libs.material)
+    implementation(libs.androidx.constraintlayout)
 
 }

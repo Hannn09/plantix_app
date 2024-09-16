@@ -101,9 +101,11 @@ class LoginActivity : AppCompatActivity() {
                     showLoading(false)
                     val token = it.data.accessToken
                     val username = it.data.username
+                    val userId = it.data.userId
                     if (token != null) {
-                        getSession(token, username)
+                        getSession(token, username, userId)
                     }
+                    Log.d("LoginActivity", "userId: $userId")
                 }
 
                 is Resource.Error -> {
@@ -115,8 +117,8 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
-    private fun getSession(token: String, username: String) {
-        loginViewModel.saveSession(token, username)
+    private fun getSession(token: String, username: String, userId: Int) {
+        loginViewModel.saveSession(token, username, userId)
         val intent = Intent(this, MainActivity::class.java)
         intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
         val options = ActivityOptionsCompat.makeCustomAnimation(

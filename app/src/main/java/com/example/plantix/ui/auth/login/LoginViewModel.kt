@@ -1,5 +1,6 @@
 package com.example.plantix.ui.auth.login
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -19,6 +20,10 @@ class LoginViewModel(private val mainUseCase: MainUseCase) : ViewModel() {
 
     val token: LiveData<Resource<String>> get() = _token
 
+    private val _userId = MutableLiveData<Resource<Int>>()
+
+    val userId: LiveData<Resource<Int>> get() = _userId
+
     fun login(username: String, password: String) {
         _result.value = Resource.Loading(true)
         viewModelScope.launch {
@@ -37,9 +42,19 @@ class LoginViewModel(private val mainUseCase: MainUseCase) : ViewModel() {
         }
     }
 
-    fun saveSession(token: String, username: String) {
+    fun saveSession(token: String, username: String, userId: Int) {
         viewModelScope.launch {
-            mainUseCase.saveSession(token, username)
+            mainUseCase.saveSession(token, username, userId)
+        }
+    }
+
+    fun getUserId() {
+        viewModelScope.launch {
+            _userId.value = Resource.Loading(true)
+            mainUseCase.getUserId().collect {
+                _userId.value = Resource.Success(it)
+                Log.d("GetUserID", "id: $it")
+            }
         }
     }
 }

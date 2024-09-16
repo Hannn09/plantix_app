@@ -1,60 +1,97 @@
 package com.example.plantix.ui.scan.detail.history
 
+import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.core.data.Resource
+import com.example.core.data.source.remote.response.Detection
+import com.example.core.domain.model.DataItem
+import com.example.core.domain.model.ItemDetection
+import com.example.core.ui.HistoryDetectionAdapter
+import com.example.core.ui.ListDetectionAdapter
 import com.example.plantix.R
+import com.example.plantix.databinding.FragmentHistoryBinding
+import com.example.plantix.ui.scan.DetectionViewModel
+import com.example.plantix.ui.scan.detail.DetailScanActivity
+import com.example.plantix.ui.scan.detail.bottom.BottomSheetDialog
+import org.koin.android.viewmodel.ext.android.viewModel
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [HistoryFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class HistoryFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+    private var _historyFragment: FragmentHistoryBinding? = null
+
+    private val historyFragment get() = _historyFragment!!
+
+    private val detectionViewModel: DetectionViewModel by viewModel()
+
+    private var plantId: Int? = null
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_history, container, false)
+        _historyFragment = FragmentHistoryBinding.inflate(inflater, container, false)
+        return _historyFragment?.root
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment HistoryFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            HistoryFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        observeData()
+        historyScanResult()
+    }
+
+    private fun observeData() {
+        plantId = arguments?.getInt("PLANT_ID")
+        Log.d("OverviewFragment", "id: $plantId")
+
+        plantId?.let { detectionViewModel.detailDetection(it) }
+    }
+
+    private fun historyScanResult() {
+        detectionViewModel.detectionDetail.observe(viewLifecycleOwner) {
+            when (it) {
+                is Resource.Loading -> {}
+                is Resource.Success -> {
+                    val data = it.data.data
+                    val sortedData = data.sortedByDescending { plant -> plant.detectionDate }
+                    showListHistory(sortedData)
+                }
+
+                is Resource.Error -> {
+                    Log.d("OverviewFragment", "error: ${it.message}")
                 }
             }
+        }
     }
+
+    private fun showListHistory(data: List<DataItem>) {
+        historyFragment.rvHistoryScan.apply {
+            adapter = HistoryDetectionAdapter(data) {
+                val bottomSheet = BottomSheetDialog()
+                bottomSheet.setPlantData(it)
+                bottomSheet.show(parentFragmentManager, "BottomSheetDialog")
+            }
+            setHasFixedSize(true)
+            layoutManager = LinearLayoutManager(requireContext())
+        }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _historyFragment = null
+    }
+
+    override fun onResume() {
+        super.onResume()
+        observeData()
+        historyScanResult()
+    }
+
 }

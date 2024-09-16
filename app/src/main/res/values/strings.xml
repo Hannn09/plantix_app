@@ -24,7 +24,7 @@
     <string name="back">Back</string>
     <string name="next">Next</string>
     <string name="title_header">Bagaimana kondisi\ntanamanmu sekarang?</string>
-    <string name="dummy_count_plant">9</string>
+    <string name="dummy_count_plant">0</string>
     <string name="search_plant">Cari tanamanmu</string>
     <string name="scan">scan</string>
     <string name="indoor_plant">Tanaman Indoor</string>
@@ -35,4 +35,16 @@
     <string name="dummy_title_requirement">Cahaya Matahari</string>
     <string name="dummy_desc_requirement">Tempatkan di area sinar matahari sekitar 4 - 6 jam sehari</string>
     <string name="plant_disease">Penyakit Tanaman</string>
+    <string name="dummy_name_disease">Penyakit Bercak Daun (Left Spot)</string>
+    <string name="name_disease">•  Kategori Penyakit:</string>
+    <string name="cause_disease">•  Penyebab:</string>
+    <string name="dummy_cause_disease">Jamur Cercospora atau Phyllosticta spp</string>
+    <string name="symptoms_disease">•  Gejala:</string>
+    <string name="dummy_symptoms_disease">Muncul bercak-bercak kecil berwarna cokelat atau hitam pada daun, Bercak ini dapat membesar dan bergabung, menyebabkan daun menguning dan rontok, Pertumbuhan tanaman menjadi terhambat karena fotosintesis terganggu</string>
+    <string name="plant_care">Perawatan Tanaman</string>
+    <string name="scan_history">Riwayat Scan</string>
+    <string name="done">Done</string>
+    <string name="name_plant">Nama Tanaman</string>
+    <string name="lanjutkan">Lanjutkan</string>
+    <string name="save">Simpan</string>
 </resources>

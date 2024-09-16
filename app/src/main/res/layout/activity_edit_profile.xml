@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:scrollbars="none"
+    android:fillViewport="true"
+    android:fitsSystemWindows="true"
+    android:background="@color/white"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".ui.profile.edit.EditProfileActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/ic_arrow_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:layout_marginStart="32dp"
+            android:background="@drawable/background_back_button_register"
+            android:padding="12dp"
+            android:src="@drawable/ic_back_grey"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/editProfile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/plus_jakarta_sans_extra"
+            android:textSize="28sp"
+            android:textColor="@color/blackText"
+            android:text="Edit Profil"
+            android:letterSpacing="-0.03"
+            app:layout_constraintTop_toTopOf="@id/ic_arrow_back"
+            app:layout_constraintBottom_toBottomOf="@id/ic_arrow_back"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/img_profile"
+            android:layout_width="95dp"
+            android:layout_height="95dp"
+            android:layout_marginTop="40dp"
+            android:elevation="2dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/skeleton_background"
+            app:shapeAppearanceOverlay="@style/RoundedItemScan"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/editProfile" />
+
+        <ImageView
+            android:id="@+id/ic_edit_profile"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@drawable/ic_edit"
+            android:elevation="6dp"
+            android:layout_marginEnd="-5dp"
+            android:layout_marginBottom="-5dp"
+            app:layout_constraintEnd_toEndOf="@id/img_profile"
+            app:layout_constraintBottom_toBottomOf="@id/img_profile"/>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/usernameEditTextLayout"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_marginHorizontal="55dp"
+            android:layout_marginTop="25dp"
+            android:background="@drawable/bg_text_field"
+            app:boxStrokeWidth="0dp"
+            app:boxStrokeWidthFocused="0dp"
+            app:errorEnabled="true"
+            app:hintEnabled="false"
+            app:layout_constraintTop_toBottomOf="@+id/nameEditTextLayout"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/usernameEditText"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:ems="10"
+                android:fontFamily="@font/plus_jakarta_sans_regular"
+                android:hint="Username"
+                android:textColorHint="@color/textColorHint"
+                android:inputType="textPersonName"
+                android:padding="12dp"
+                android:textSize="16sp"
+                tools:ignore="SpeakableTextPresentCheck" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/nameEditTextLayout"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_marginHorizontal="55dp"
+            android:layout_marginTop="70dp"
+            android:background="@drawable/bg_text_field"
+            app:boxStrokeWidth="0dp"
+            app:boxStrokeWidthFocused="0dp"
+            app:errorEnabled="true"
+            app:hintEnabled="false"
+            app:layout_constraintTop_toBottomOf="@+id/img_profile"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/nameEditText"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:ems="10"
+                android:fontFamily="@font/plus_jakarta_sans_regular"
+                android:hint="Nama lengkap"
+                android:textColor="@color/blackText"
+                android:textColorHint="@color/textColorHint"
+                android:inputType="textPersonName"
+                android:padding="12dp"
+                android:textSize="16sp"
+                tools:ignore="SpeakableTextPresentCheck" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/emailEditTextLayout"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_marginHorizontal="55dp"
+            android:layout_marginTop="25dp"
+            android:background="@drawable/bg_text_field"
+            app:boxStrokeWidth="0dp"
+            app:boxStrokeWidthFocused="0dp"
+            app:errorEnabled="true"
+            app:hintEnabled="false"
+            app:layout_constraintTop_toBottomOf="@+id/usernameEditTextLayout"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/emailEditText"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:ems="10"
+                android:fontFamily="@font/plus_jakarta_sans_regular"
+                android:hint="E-mail"
+                android:textColorHint="@color/textColorHint"
+                android:inputType="textEmailAddress"
+                android:padding="12dp"
+                android:textSize="16sp"
+                tools:ignore="SpeakableTextPresentCheck" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Button
+            android:id="@+id/btnSave"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="50dp"
+            android:layout_marginHorizontal="40dp"
+            android:text="@string/save"
+            android:fontFamily="@font/plus_jakarta_sans_bold"
+            android:background="@drawable/bg_button_welcome"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/emailEditTextLayout"
+            app:layout_constraintEnd_toEndOf="@id/emailEditTextLayout"
+            app:layout_constraintStart_toStartOf="@id/emailEditTextLayout"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>

@@ -1,97 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
-    android:fillViewport="true"
     tools:context=".ui.news.DetailNewsActivity">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
+    <LinearLayout
+        android:id="@+id/action_button"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="horizontal"
+        android:padding="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
         <ImageView
             android:id="@+id/ic_back"
-            android:layout_width="25dp"
+            android:layout_width="0dp"
             android:layout_height="25dp"
-            android:layout_marginTop="40dp"
-            android:layout_marginStart="25dp"
-            android:src="@drawable/ic_back_black"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+            android:layout_weight="1"
+            android:src="@drawable/ic_back_black" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="25dp"
+            android:layout_weight="1"
+            android:layout_marginEnd="25dp"
+            android:layout_marginStart="25dp" />
+        <View
+            android:layout_width="0dp"
+            android:layout_height="25dp"
+            android:layout_weight="1"
+            android:layout_marginEnd="25dp"
+            android:layout_marginStart="25dp" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="25dp"
+            android:layout_weight="1"
+            android:layout_marginEnd="25dp"
+            android:layout_marginStart="25dp" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="25dp"
+            android:layout_weight="1"
+            android:layout_marginEnd="25dp"
+            android:layout_marginStart="25dp" />
 
         <ImageView
             android:id="@+id/ic_share"
-            android:layout_width="25dp"
+            android:layout_width="0dp"
             android:layout_height="25dp"
-            android:layout_marginTop="40dp"
-            android:layout_marginEnd="25dp"
-            android:src="@drawable/ic_share"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+            android:layout_weight="1"
+            android:src="@drawable/ic_share" />
+    </LinearLayout>
 
-        <TextView
-            android:id="@+id/titleNews"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="25dp"
-            android:layout_marginTop="25dp"
-            android:fontFamily="@font/plus_jakarta_sans_extra"
-            android:textSize="20sp"
-            android:text="How air pollution may make it harder\nfor pollinatirs to find flowers"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/ic_back"/>
-        
-        <ImageView
-            android:id="@+id/banner"
-            android:layout_width="match_parent"
-            android:layout_height="210dp"
-            android:scaleType="fitXY"
-            android:layout_marginTop="22dp"
-            app:layout_constraintTop_toBottomOf="@id/titleNews"
-            android:src="@drawable/banner_dummy"/>
+    <WebView
+        android:id="@+id/web_news"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/action_button"/>
 
-        <com.google.android.material.imageview.ShapeableImageView
-            android:id="@+id/profile_dummy"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:scaleType="fitXY"
-            android:src="@drawable/profile_dummy_user"
-            android:layout_marginTop="30dp"
-            android:layout_marginStart="25dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/banner"/>
-
-        <TextView
-            android:id="@+id/username"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:fontFamily="@font/plus_jakarta_sans_medium"
-            android:textSize="12sp"
-            android:textColor="@color/blackText"
-            android:text="Saugat Bolakhe"
-            app:layout_constraintTop_toTopOf="@id/profile_dummy"
-            app:layout_constraintBottom_toBottomOf="@id/profile_dummy"
-            app:layout_constraintStart_toEndOf="@id/profile_dummy"/>
-
-        <TextView
-            android:id="@+id/desc"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="25dp"
-            android:layout_marginStart="25dp"
-            android:layout_marginEnd="25dp"
-            android:text="@string/dummy_news"
-            android:fontFamily="@font/plus_jakarta_sans_regular"
-            android:textSize="12sp"
-            android:textColor="@color/blackText"
-            android:lineSpacingExtra="3dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/profile_dummy"/>
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-</ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

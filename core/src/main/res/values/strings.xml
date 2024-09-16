@@ -2,4 +2,7 @@
 <resources>
     <string name="dummy_name_plant">Tanaman Pucuk Merah</string>
     <string name="dummy_scientific_plant">Syzygium myrtifolium</string>
+    <string name="scan_success">Scan Berhasil</string>
+    <string name="dummy_id_scan">#PX22</string>
+    <string name="dummy_date_scan">22.8.2024</string>
 </resources>

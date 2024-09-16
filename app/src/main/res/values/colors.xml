@@ -7,4 +7,7 @@
     <color name="textColorHint">#331E1E1E</color>
     <color name="grey">#F9F9F9</color>
     <color name="btn_disabled">#F8F8F8</color>
+    <color name="plant_detection">#EE7676</color>
+    <color name="banner_color">#FFDBCD</color>
+    <color name="success_color">#4ECB71</color>
 </resources>

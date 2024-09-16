@@ -7,7 +7,9 @@ class LocalDataSource(private val userPreferences: UserPreferences) {
 
     fun getUsername() =  userPreferences.getUsername()
 
-    suspend fun saveSession(token: String, username: String) = userPreferences.saveSession(token, username)
+    fun getUserId() = userPreferences.getUserId()
+
+    suspend fun saveSession(token: String, username: String, userId: Int) = userPreferences.saveSession(token, username, userId)
 
     suspend fun deleteSession() = userPreferences.deleteSession()
 }

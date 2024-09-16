@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:paddingHorizontal="50dp"
+    android:paddingVertical="45dp"
+    android:background="@drawable/background_bottom_sheet">
+
+    <ImageView
+        android:id="@+id/ic_gallery"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:src="@drawable/ic_gallery"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/ic_catch_image"
+        app:layout_constraintTop_toTopOf="@id/ic_catch_image"/>
+
+    <ImageView
+        android:id="@+id/ic_catch_image"
+        android:layout_width="92dp"
+        android:layout_height="90dp"
+        android:src="@drawable/ic_catch_image"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <TextView
+        android:id="@+id/btnSubmit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingVertical="8dp"
+        android:paddingHorizontal="15dp"
+        android:background="@drawable/bg_button_welcome"
+        android:text="@string/done"
+        android:textAlignment="center"
+        android:fontFamily="@font/plus_jakarta_sans_bold"
+        android:textSize="12sp"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/ic_catch_image"
+        app:layout_constraintTop_toTopOf="@id/ic_catch_image"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
